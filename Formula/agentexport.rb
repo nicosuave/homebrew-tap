@@ -1,26 +1,26 @@
 class Agentexport < Formula
   desc "Share Claude Code and Codex session transcripts with end-to-end encryption"
   homepage "https://github.com/nicosuave/agentexport"
-  version "0.2.3"
+  version "0.2.4"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/agentexport/releases/download/v#{version}/agentexport-#{version}-macos-arm64.tar.gz"
-      sha256 "bf5a5916c3c404972056fda5925c5d3204842506e52ec6591b5e215c80c82609"
+      sha256 "436eef738f8fa748fdc1beea3a9fe6e5e909bf50deb3ad1fdc2c11aec544a53b"
     else
       url "https://github.com/nicosuave/agentexport/releases/download/v#{version}/agentexport-#{version}-macos-x86_64.tar.gz"
-      sha256 "0fbf4bec610dc7576dd3a6bae11ac65bc890fac20c0a9b75bf02b745631a44d2"
+      sha256 "2472574abf3741d4adedc7a48c94b88b41b60e9025489db6a3421d63d9edfcc3"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/agentexport/releases/download/v#{version}/agentexport-#{version}-linux-arm64.tar.gz"
-      sha256 "5c2557240e27d4cc6f3cc79537fc64cf18b8dc997dca402fbd0c165b0eddb508"
+      sha256 "ce5f0d357cfb1dbd3c84acef8f45c3252883e99118f89018f19294cf2df71e4c"
     else
       url "https://github.com/nicosuave/agentexport/releases/download/v#{version}/agentexport-#{version}-linux-x86_64.tar.gz"
-      sha256 "d245314033e5313bfeb467020447ba29ca2ffc78aca2f114b7a9e4a856155dbb"
+      sha256 "a2f69794c29e0fa6d2f3f11953801ccd942f52f33b64b46bd9a628c05fef05e2"
     end
   end
 
