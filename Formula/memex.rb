@@ -1,7 +1,7 @@
 class Memex < Formula
   desc "Fast local history search for Claude and Codex logs"
   homepage "https://github.com/nicosuave/memex"
-  version "v0.2.3"
+  version "0.2.3"
   license "MIT"
 
   on_macos do
