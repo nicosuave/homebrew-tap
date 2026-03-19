@@ -16,6 +16,7 @@ class Ghostreelite < Formula
 
   def install
     bin.install "ghostreelite"
+    bin.install "gtl"
   end
 
   test do

@@ -7,10 +7,10 @@ class Gmx < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/gmx-#{version}-macos-arm64.tar.gz"
-      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+      sha256 "0e78f93a1ca3928b08f2b3dacb47ba3f528e1ccf746cadb85dcc772694fd5864"
     else
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/gmx-#{version}-macos-x86_64.tar.gz"
-      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+      sha256 "89e8fe3befc7eceeda432eefa20cb1bfef47f5acee5fcf1b97c12120db03823c"
     end
   end
 
