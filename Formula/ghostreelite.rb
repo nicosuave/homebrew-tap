@@ -1,7 +1,7 @@
 class Ghostreelite < Formula
   desc "Worktree manager with zmx sessions + Ghostty splits"
   homepage "https://github.com/nicosuave/gmx"
-  version "0.1.6"
+  version "0.1.7"
   license "MIT"
 
   depends_on "neurosnap/tap/zmx"
@@ -10,10 +10,10 @@ class Ghostreelite < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/ghostreelite-#{version}-macos-arm64.tar.gz"
-      sha256 "3d8f99b5cb511750b998e1b34c82e7c612ac77dd2f3cd515c05aeee1410c22a0"
+      sha256 "df04d09714e3dcaded3c4d2429196ed4b2aa2f8d14252e7ace2db7984ff8fa1b"
     else
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/ghostreelite-#{version}-macos-x86_64.tar.gz"
-      sha256 "c5b3610a7d575ba1c14a37a9bc4313bb39f2ac949aaffa771dbd3c98e1a9d4ea"
+      sha256 "86d81e1f0ff452a4de0725941e4daec5c280ea116c18fa72a1a6cd105256ea08"
     end
   end
 
