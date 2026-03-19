@@ -1,7 +1,7 @@
 class Gmx < Formula
   desc "Ghostty Multiplexer: tmux-like sessions with native Ghostty splits + zmx"
   homepage "https://github.com/nicosuave/gmx"
-  version "0.1.2"
+  version "0.1.3"
   license "MIT"
 
   depends_on "neurosnap/tap/zmx"
@@ -9,10 +9,10 @@ class Gmx < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/gmx-#{version}-macos-arm64.tar.gz"
-      sha256 "890bf0b2663a2e644474b5173b577ab45bd37f7c553a4f77ba43b50609218682"
+      sha256 "0b85ff8a921aae86627f1aaa66d1955dd1902808b8a4ff03fd8f5ace3beb86e1"
     else
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/gmx-#{version}-macos-x86_64.tar.gz"
-      sha256 "e3a2120408e5239e74692bc79621dfcaeac5b2ca60ead647ec47cf133b16f046"
+      sha256 "1561bdf573d541971e6377d81e9eac3db5d97510752508238f64ab568571b49e"
     end
   end
 
