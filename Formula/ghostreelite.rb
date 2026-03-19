@@ -4,6 +4,9 @@ class Ghostreelite < Formula
   version "0.1.1"
   license "MIT"
 
+  depends_on "neurosnap/tap/zmx"
+  depends_on "worktrunk"
+
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/gmx/releases/download/v#{version}/ghostreelite-#{version}-macos-arm64.tar.gz"
