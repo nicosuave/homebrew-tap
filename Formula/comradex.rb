@@ -1,26 +1,26 @@
 class Comradex < Formula
   desc "Sticky account-pool router for native Codex traffic"
   homepage "https://github.com/nicosuave/comradex"
-  version "0.5.0"
+  version "0.6.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/comradex/releases/download/v#{version}/comradex-#{version}-macos-arm64.tar.gz"
-      sha256 "c158e5ccbb0a5f28e5fedc6312f1543808594ccde1cf0a9f8aff88d5c3f03cc4"
+      sha256 "7bbd73a4aef2478f028bc865e6c2cbe5315ae6a8c525a97bb7448950cb4d7e8b"
     else
       url "https://github.com/nicosuave/comradex/releases/download/v#{version}/comradex-#{version}-macos-x86_64.tar.gz"
-      sha256 "934106cdf574fc7b4fcc2ccabefd39776c2bbeb556d662d7c9bc0e8ca90cdb6b"
+      sha256 "6511765618ec937bb8fe97ecb1dffbae1bbfb9ac9eae3f4441f11b139905bea3"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/comradex/releases/download/v#{version}/comradex-#{version}-linux-arm64.tar.gz"
-      sha256 "bb8b1779abaa43357e89dfd962951dbf3c86a36f10b70c280e20becf404cbd10"
+      sha256 "ed01dbab7a79391fbb5ed0585e76d04b1d09e131bac308f7d7f3bfc098d50e52"
     else
       url "https://github.com/nicosuave/comradex/releases/download/v#{version}/comradex-#{version}-linux-x86_64.tar.gz"
-      sha256 "5b8abb1eb6ab123a6ff7ca3c50181b873463ca4d7712412dc0ea990b7d2f2b0c"
+      sha256 "a181112a5f139803095c2ccf96443bc5c53d770669a1d118bd74bd3e9163d600"
     end
   end
 
