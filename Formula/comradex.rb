@@ -6,10 +6,10 @@ class Comradex < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nicosuave/comradex/releases/download/v0.9.2/comradex-0.9.2-macos-arm64.tar.gz"
-      sha256 "f12f7f7d94f4067cf15f41e05589fe2901fc9b392129b43a885bdb8d019b323b"
+      sha256 "81ec8cccbb721d4aefc18965229cdca3049aa125e5d449b4eb1cc0cca6a0ac29"
     else
       url "https://github.com/nicosuave/comradex/releases/download/v0.9.2/comradex-0.9.2-macos-x86_64.tar.gz"
-      sha256 "63d9025cb8ed793bd78a8196f585cfefc74e82bb7178970456028b706c2e5681"
+      sha256 "699f6a4fc23e0ac403bc783d71e4442939f8f7f33f3ab723f3e6035790f27fa2"
     end
   end
 
