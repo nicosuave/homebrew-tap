@@ -29,10 +29,14 @@ jobs:
           # Download SHA256 files
           BASE_URL="https://github.com/${REPO}/releases/download/v${VERSION}"
 
-          MACOS_ARM64_SHA=$(curl -sL "${BASE_URL}/${FORMULA}-${VERSION}-macos-arm64.tar.gz.sha256" | awk '{print $1}')
-          MACOS_X86_SHA=$(curl -sL "${BASE_URL}/${FORMULA}-${VERSION}-macos-x86_64.tar.gz.sha256" | awk '{print $1}')
-          LINUX_ARM64_SHA=$(curl -sL "${BASE_URL}/${FORMULA}-${VERSION}-linux-arm64.tar.gz.sha256" | awk '{print $1}')
-          LINUX_X86_SHA=$(curl -sL "${BASE_URL}/${FORMULA}-${VERSION}-linux-x86_64.tar.gz.sha256" | awk '{print $1}')
+          MACOS_ARM64_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-arm64.tar.gz.sha256" | awk '{print $1}')
+          MACOS_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-x86_64.tar.gz.sha256" | awk '{print $1}')
+          LINUX_ARM64_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-arm64.tar.gz.sha256" | awk '{print $1}')
+          LINUX_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-x86_64.tar.gz.sha256" | awk '{print $1}')
+
+          for sha in "${MACOS_ARM64_SHA}" "${MACOS_X86_SHA}" "${LINUX_ARM64_SHA}" "${LINUX_X86_SHA}"; do
+            [[ "${sha}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid SHA256: ${sha}" >&2; exit 1; }
+          done
 
           echo "SHA256 sums:"
           echo "  macos-arm64: ${MACOS_ARM64_SHA}"
@@ -48,18 +52,27 @@ jobs:
 
           # Update SHA256 sums (in order they appear in file)
           # macos-arm64 is first, then macos-x86_64, then linux-arm64, then linux-x86_64
-          awk -v ma="${MACOS_ARM64_SHA}" -v mx="${MACOS_X86_SHA}" -v la="${LINUX_ARM64_SHA}" -v lx="${LINUX_X86_SHA}" '
-            BEGIN { macos_count=0; linux_count=0 }
+          awk -v ma="${MACOS_ARM64_SHA}" -v mx="${MACOS_X86_SHA}" -v la="${LINUX_ARM64_SHA}" -v lx="${LINUX_X86_SHA}" \
+              -v repo="${REPO}" -v formula="${FORMULA}" -v version="${VERSION}" '
+            BEGIN { macos_count=0; linux_count=0; base="https://github.com/" repo "/releases/download/v" version "/" formula "-" version }
             /on_macos do/,/end/ {
-              if (/sha256/) {
+              if (/url/) {
                 macos_count++
+                platform = macos_count == 1 ? "macos-arm64" : "macos-x86_64"
+                sub(/url ".*"/, "url \"" base "-" platform ".tar.gz\"")
+              }
+              if (/sha256/) {
                 if (macos_count == 1) { sub(/sha256 ".*"/, "sha256 \"" ma "\"") }
                 if (macos_count == 2) { sub(/sha256 ".*"/, "sha256 \"" mx "\"") }
               }
             }
             /on_linux do/,/end/ {
-              if (/sha256/) {
+              if (/url/) {
                 linux_count++
+                platform = linux_count == 1 ? "linux-arm64" : "linux-x86_64"
+                sub(/url ".*"/, "url \"" base "-" platform ".tar.gz\"")
+              }
+              if (/sha256/) {
                 if (linux_count == 1) { sub(/sha256 ".*"/, "sha256 \"" la "\"") }
                 if (linux_count == 2) { sub(/sha256 ".*"/, "sha256 \"" lx "\"") }
               }
