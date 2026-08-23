@@ -38,11 +38,20 @@ jobs:
             [[ "${sha}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid SHA256: ${sha}" >&2; exit 1; }
           done
 
+          MACOS_APP_SHA=""
+          if [[ "${FORMULA}" == "comradex" ]]; then
+            MACOS_APP_SHA=$(curl -fsSL "${BASE_URL}/comradex-menu-${VERSION}-macos-universal.zip.sha256" | awk '{print $1}')
+            [[ "${MACOS_APP_SHA}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid app SHA256: ${MACOS_APP_SHA}" >&2; exit 1; }
+          fi
+
           echo "SHA256 sums:"
           echo "  macos-arm64: ${MACOS_ARM64_SHA}"
           echo "  macos-x86_64: ${MACOS_X86_SHA}"
           echo "  linux-arm64: ${LINUX_ARM64_SHA}"
           echo "  linux-x86_64: ${LINUX_X86_SHA}"
+          if [[ -n "${MACOS_APP_SHA}" ]]; then
+            echo "  macos-app: ${MACOS_APP_SHA}"
+          fi
 
           # Update formula file
           FORMULA_FILE="Formula/${FORMULA}.rb"
@@ -81,6 +90,33 @@ jobs:
           ' "${FORMULA_FILE}" > "${FORMULA_FILE}.tmp" && mv "${FORMULA_FILE}.tmp" "${FORMULA_FILE}"
 
           cat "${FORMULA_FILE}"
+
+          if [[ "${FORMULA}" == "comradex" ]]; then
+            # Keep the GUI app separate so the CLI formula and app cask can coexist.
+            mkdir -p Casks
+            cat > Casks/comradex-menu.rb <<CASK
+          cask "comradex-menu" do
+            version "${VERSION}"
+            sha256 "${MACOS_APP_SHA}"
+
+            url "${BASE_URL}/comradex-menu-${VERSION}-macos-universal.zip"
+            name "Comradex Menu"
+            desc "Menu bar companion for the Comradex account router"
+            homepage "https://github.com/${REPO}"
+
+            depends_on macos: ">= :sonoma"
+
+            app "ComradexMenu.app"
+
+            caveats <<~EOS
+              Comradex Menu connects to the daemon installed by the Comradex formula:
+                brew install nicosuave/tap/comradex
+            EOS
+          end
+          CASK
+
+            cat Casks/comradex-menu.rb
+          fi
 
       - name: Commit and push
         run: |
