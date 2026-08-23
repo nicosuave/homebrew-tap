@@ -33,8 +33,9 @@ jobs:
           MACOS_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-x86_64.tar.gz.sha256" | awk '{print $1}')
           LINUX_ARM64_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-arm64.tar.gz.sha256" | awk '{print $1}')
           LINUX_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-x86_64.tar.gz.sha256" | awk '{print $1}')
+          MACOS_APP_SHA=$(curl -fsSL "${BASE_URL}/comradex-menu-${VERSION}-macos-universal.zip.sha256" | awk '{print $1}')
 
-          for sha in "${MACOS_ARM64_SHA}" "${MACOS_X86_SHA}" "${LINUX_ARM64_SHA}" "${LINUX_X86_SHA}"; do
+          for sha in "${MACOS_ARM64_SHA}" "${MACOS_X86_SHA}" "${LINUX_ARM64_SHA}" "${LINUX_X86_SHA}" "${MACOS_APP_SHA}"; do
             [[ "${sha}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid SHA256: ${sha}" >&2; exit 1; }
           done
 
@@ -43,6 +44,7 @@ jobs:
           echo "  macos-x86_64: ${MACOS_X86_SHA}"
           echo "  linux-arm64: ${LINUX_ARM64_SHA}"
           echo "  linux-x86_64: ${LINUX_X86_SHA}"
+          echo "  macos-app: ${MACOS_APP_SHA}"
 
           # Update formula file
           FORMULA_FILE="Formula/${FORMULA}.rb"
@@ -81,6 +83,31 @@ jobs:
           ' "${FORMULA_FILE}" > "${FORMULA_FILE}.tmp" && mv "${FORMULA_FILE}.tmp" "${FORMULA_FILE}"
 
           cat "${FORMULA_FILE}"
+
+          # Keep the GUI app separate so the CLI formula and app cask can coexist.
+          mkdir -p Casks
+          cat > Casks/comradex-menu.rb <<CASK
+          cask "comradex-menu" do
+            version "${VERSION}"
+            sha256 "${MACOS_APP_SHA}"
+
+            url "${BASE_URL}/comradex-menu-${VERSION}-macos-universal.zip"
+            name "Comradex Menu"
+            desc "Menu bar companion for the Comradex account router"
+            homepage "https://github.com/${REPO}"
+
+            depends_on macos: ">= :sonoma"
+
+            app "ComradexMenu.app"
+
+            caveats <<~EOS
+              Comradex Menu connects to the daemon installed by the Comradex formula:
+                brew install nicosuave/tap/comradex
+            EOS
+          end
+          CASK
+
+          cat Casks/comradex-menu.rb
 
       - name: Commit and push
         run: |
