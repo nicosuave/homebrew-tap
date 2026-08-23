@@ -33,15 +33,3 @@ Share Claude Code and Codex session transcripts with end-to-end encryption.
 ```bash
 brew install nicosuave/tap/agentexport
 ```
-
-## Casks
-
-### comradex-menu
-
-Native menu bar companion for an existing Comradex daemon installation.
-
-```bash
-brew install --cask nicosuave/tap/comradex-menu
-```
-
-The app and `comradex` formula are designed to be installed together. The app uses the formula-managed daemon rather than installing a competing service.
