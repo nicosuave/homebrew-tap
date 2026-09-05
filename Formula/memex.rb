@@ -1,26 +1,26 @@
 class Memex < Formula
   desc "Fast local history search for Claude and Codex logs"
   homepage "https://github.com/nicosuave/memex"
-  version "0.17.0"
+  version "0.17.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/memex/releases/download/v0.17.0/memex-0.17.0-macos-arm64.tar.gz"
-      sha256 "d4f80f956ff4b50c45174460713eb4c60f8fc09572064e1aea30f8ce1a9876ec"
+      url "https://github.com/nicosuave/memex/releases/download/v0.17.1/memex-0.17.1-macos-arm64.tar.gz"
+      sha256 "0a90fb5052dcffc92f18430802f4901feed254a18cfb18ddb59b749fdb4ed791"
     else
-      url "https://github.com/nicosuave/memex/releases/download/v0.17.0/memex-0.17.0-macos-x86_64.tar.gz"
-      sha256 "936a1d843bb58c8852560a16efdcea30c5d55467197c7c6f48832f4c9b67af8e"
+      url "https://github.com/nicosuave/memex/releases/download/v0.17.1/memex-0.17.1-macos-x86_64.tar.gz"
+      sha256 "2fb3ff138d7d8b96bf946101daf3a3a75062f1639ead001a71e58943e9b1a910"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/memex/releases/download/v0.17.0/memex-0.17.0-linux-arm64.tar.gz"
-      sha256 "de359519584f2d488b03b3ed57530801680139c507da369e585e6666fb25b260"
+      url "https://github.com/nicosuave/memex/releases/download/v0.17.1/memex-0.17.1-linux-arm64.tar.gz"
+      sha256 "5c2aa71d4ffa543f4d7a4b9fedfa4e94fe1a467a7e3f52e6ac65a66c52916e8c"
     else
-      url "https://github.com/nicosuave/memex/releases/download/v0.17.0/memex-0.17.0-linux-x86_64.tar.gz"
-      sha256 "8d547f14839a42109761aa7ae76cfc9a03600e1697668ffa2e7dd206b0f112ce"
+      url "https://github.com/nicosuave/memex/releases/download/v0.17.1/memex-0.17.1-linux-x86_64.tar.gz"
+      sha256 "dace1cf6b802920079ae7a69049be56eaea7fd2fa2c349722726684dc21f553e"
     end
   end
 
