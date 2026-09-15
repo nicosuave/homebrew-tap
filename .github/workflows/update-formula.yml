@@ -30,13 +30,16 @@ jobs:
           BASE_URL="https://github.com/${REPO}/releases/download/v${VERSION}"
 
           MACOS_ARM64_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-arm64.tar.gz.sha256" | awk '{print $1}')
-          MACOS_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-x86_64.tar.gz.sha256" | awk '{print $1}')
+          MACOS_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-macos-x86_64.tar.gz.sha256" 2>/dev/null | awk '{print $1}' || true)
           LINUX_ARM64_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-arm64.tar.gz.sha256" | awk '{print $1}')
           LINUX_X86_SHA=$(curl -fsSL "${BASE_URL}/${FORMULA}-${VERSION}-linux-x86_64.tar.gz.sha256" | awk '{print $1}')
 
-          for sha in "${MACOS_ARM64_SHA}" "${MACOS_X86_SHA}" "${LINUX_ARM64_SHA}" "${LINUX_X86_SHA}"; do
+          for sha in "${MACOS_ARM64_SHA}" "${LINUX_ARM64_SHA}" "${LINUX_X86_SHA}"; do
             [[ "${sha}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid SHA256: ${sha}" >&2; exit 1; }
           done
+          if [[ -n "${MACOS_X86_SHA}" ]]; then
+            [[ "${MACOS_X86_SHA}" =~ ^[0-9a-f]{64}$ ]] || { echo "Invalid SHA256: ${MACOS_X86_SHA}" >&2; exit 1; }
+          fi
 
           MACOS_APP_SHA=""
           if [[ "${FORMULA}" == "comradex" ]]; then
@@ -46,7 +49,9 @@ jobs:
 
           echo "SHA256 sums:"
           echo "  macos-arm64: ${MACOS_ARM64_SHA}"
-          echo "  macos-x86_64: ${MACOS_X86_SHA}"
+          if [[ -n "${MACOS_X86_SHA}" ]]; then
+            echo "  macos-x86_64: ${MACOS_X86_SHA}"
+          fi
           echo "  linux-arm64: ${LINUX_ARM64_SHA}"
           echo "  linux-x86_64: ${LINUX_X86_SHA}"
           if [[ -n "${MACOS_APP_SHA}" ]]; then
