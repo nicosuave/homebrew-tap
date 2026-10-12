@@ -1,6 +1,6 @@
 cask "memex-app" do
-  version "0.27.0"
-  sha256 "fc151db706a398597e02063d49d06fe78a23696cd9b1d6761fbf02145c268011"
+  version "0.28.0"
+  sha256 "3612bd64617532a5be599bc3b1b65a73def738be2ece9ed9d4b6f727faf07595"
 
   url "https://github.com/nicosuave/memex/releases/download/v#{version}/memex-app-#{version}-macos-arm64.zip"
   name "Memex"
