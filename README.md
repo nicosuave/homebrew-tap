@@ -20,10 +20,11 @@ brew install nicosuave/tap/comradex
 
 ### memex
 
-Fast local history search for Claude and Codex logs.
+Moved to Homebrew core. Install with `brew install memex`; existing tap installs
+migrate on their next `brew update`. The Memex macOS app stays in this tap:
 
 ```bash
-brew install nicosuave/tap/memex
+brew install --cask nicosuave/tap/memex-app
 ```
 
 ### agentexport
