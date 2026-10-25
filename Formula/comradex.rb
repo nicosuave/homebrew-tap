@@ -5,21 +5,21 @@ class Comradex < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/comradex/releases/download/v0.18.2/comradex-0.18.2-macos-arm64.tar.gz"
-      sha256 "236674eb56fb0bc80f19b07e2f64a4f2c6f541a65d1c736ecf935b459ec3a9cb"
+      url "https://github.com/nicosuave/comradex/releases/download/v0.18.4/comradex-0.18.4-macos-arm64.tar.gz"
+      sha256 "c68fc29f5c5ecb1ec8b9e68c7ade8ca4ed3ba5f9f63db644b220ac5d96920353"
     else
-      url "https://github.com/nicosuave/comradex/releases/download/v0.18.2/comradex-0.18.2-macos-x86_64.tar.gz"
-      sha256 "66eb9cf69687d7f7e1c5e67df16b22041a4912798bd9189bc143555bfd7c6ea0"
+      url "https://github.com/nicosuave/comradex/releases/download/v0.18.4/comradex-0.18.4-macos-x86_64.tar.gz"
+      sha256 "49bee2034e1af4b4ccd7c502192659eb81e4b6c5005979bc26fa0ab1869ebb3f"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/comradex/releases/download/v0.18.2/comradex-0.18.2-linux-arm64.tar.gz"
-      sha256 "aca94f5ae15999eba7ec0984788b02e809e1428dd069a0f632d29e0f4a58949d"
+      url "https://github.com/nicosuave/comradex/releases/download/v0.18.4/comradex-0.18.4-linux-arm64.tar.gz"
+      sha256 "95c70f16ca5d1c2be39bdd8c5fed344adb6f67401a1f62b8606a599a1c33ac05"
     else
-      url "https://github.com/nicosuave/comradex/releases/download/v0.18.2/comradex-0.18.2-linux-x86_64.tar.gz"
-      sha256 "17410028153b91829b51fb4a0acb7086cbb6d8f7b8d7d69feec2adff6c83cac4"
+      url "https://github.com/nicosuave/comradex/releases/download/v0.18.4/comradex-0.18.4-linux-x86_64.tar.gz"
+      sha256 "df6e3f55953e1165ea5c4a3064e46180ca59c40ee39fd64de433b2f6e847fbb0"
     end
   end
 
