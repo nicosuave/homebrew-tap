@@ -1,26 +1,26 @@
 class Claudex < Formula
   desc "Claude app-server facade for the Codex desktop"
   homepage "https://github.com/nicosuave/claudex"
-  version "0.2.13"
+  version "0.2.14"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/claudex/releases/download/v0.2.13/claudex-0.2.13-macos-arm64.tar.gz"
-      sha256 "c34f5677f98e1556a92ccb7bd29fbb3d98037b07cb3f8a9e9707487e6d339942"
+      url "https://github.com/nicosuave/claudex/releases/download/v0.2.14/claudex-0.2.14-macos-arm64.tar.gz"
+      sha256 "5389b4615efb6a99ccd9dcb1f3e2f7171f2d16b19cd437c5c485fa0220388fdb"
     else
-      url "https://github.com/nicosuave/claudex/releases/download/v0.2.13/claudex-0.2.13-macos-x86_64.tar.gz"
-      sha256 "f1fb1cf639e8bb51d10729aa339b50823d2e09b9413671cef73b5d2168641545"
+      url "https://github.com/nicosuave/claudex/releases/download/v0.2.14/claudex-0.2.14-macos-x86_64.tar.gz"
+      sha256 "1e121a0bf0f34c8e955af5ec41ded3873004eb806e2c8f9e054a32710554ddbd"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/nicosuave/claudex/releases/download/v0.2.13/claudex-0.2.13-linux-arm64.tar.gz"
-      sha256 "bc973265d67d0237b9d85abc2dd7efc098bf17a5a3aa1f24a69acd7a307368a3"
+      url "https://github.com/nicosuave/claudex/releases/download/v0.2.14/claudex-0.2.14-linux-arm64.tar.gz"
+      sha256 "5f470cacb9cc28e38d6a78a2d04105df0565aeae1fa97cebeb3eea78552ffcb2"
     else
-      url "https://github.com/nicosuave/claudex/releases/download/v0.2.13/claudex-0.2.13-linux-x86_64.tar.gz"
-      sha256 "16b757a5b9613e01e61ef413f9017201c2df9c2c2ce6f9f003e4357574cc5f79"
+      url "https://github.com/nicosuave/claudex/releases/download/v0.2.14/claudex-0.2.14-linux-x86_64.tar.gz"
+      sha256 "bbf8dc79d1f3173b2a1a8328d8cbc34dacf8ac0ed0963f9f542fb2027c65885b"
     end
   end
 
