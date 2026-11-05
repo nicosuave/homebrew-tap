@@ -1,8 +1,8 @@
 cask "comradex-menu" do
-  version "0.19.3"
-  sha256 "a464b658769db04665cc6b4b9897e516016cd22d6b350acc4057176424608ff0"
+  version "0.19.4"
+  sha256 "99dba3fc30eb29f76d9514541a92335aebd5fc5bf60833d3f531169df32a6998"
 
-  url "https://github.com/nicosuave/comradex/releases/download/v0.19.3/comradex-menu-0.19.3-macos-universal.zip"
+  url "https://github.com/nicosuave/comradex/releases/download/v0.19.4/comradex-menu-0.19.4-macos-universal.zip"
   name "Comradex Menu"
   desc "Menu bar companion for the Comradex account router"
   homepage "https://github.com/nicosuave/comradex"
